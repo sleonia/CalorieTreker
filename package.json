@@ -17,8 +17,12 @@
   },
   "homepage": "https://github.com/sleonia/CalorieTreker#readme",
   "dependencies": {
-    "eslint": "^7.9.0",
     "node-telegram-bot-api": "^0.50.0",
+    "pg": "^8.3.3",
     "telegraf": "^3.38.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-plugin-node": "^11.1.0"
   }
 }
