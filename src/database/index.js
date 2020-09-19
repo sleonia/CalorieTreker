@@ -3,22 +3,22 @@ const pg = require('pg');
 
 class Database {
 	constructor() {
-		const data = fs.readFileSync('src/database/.env.json');
-		this.json = JSON.parse(data);
+		this.json = JSON.parse(fs.readFileSync('src/database/.env.json'));
 		this.pool = this.connect();
 		this.pool.query('SELECT * from persons', (err, res) => {
-		console.log(res);
-		this.pool.end();
+			console.log(res);
+			this.pool.end();
 		});
 	}
 
 	connect() {
 		const pool = new pg.Pool({
-		user: this.json.user,
-		host: this.json.host,
-		database: this.json.database,
-		password: this.json.password,
-		port: this.json.port});
+			user: this.json.user,
+			host: this.json.host,
+			database: this.json.database,
+			password: this.json.password,
+			port: this.json.port,
+		});
 		return pool;
 	}
 }

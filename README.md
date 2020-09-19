@@ -8,8 +8,10 @@ If you have any questions - press ```/help``` and read a message.
 
 > How to run?  
 ```
+
 $> git clone https://github.com/sleonia/CalorieTreker.git
 $> cd CalorieTreker
+$> sh src/scripts/createEnvFiles.sh
 $> npm i
 $> node src
 ```
