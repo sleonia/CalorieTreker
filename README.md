@@ -11,7 +11,14 @@ If you have any questions - press ```/help``` and read a message.
 
 $> git clone https://github.com/sleonia/CalorieTreker.git
 $> cd CalorieTreker
-$> sh src/scripts/createEnvFiles.sh
+$> sh src/scripts/createEnvFiles.sh # create example .env* files
 $> npm i
 $> node src
+```
+
+> How to set up .env* files?
+```
+$> sh setUpTelegramEnv.sh
+$> sh setUpEmailEnv.sh
+$> sh setUpDatabaseEnv.sh
 ```
