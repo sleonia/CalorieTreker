@@ -2,7 +2,7 @@ const fs = require('fs');
 const { Telegraf } = require('telegraf');
 
 // const Database = require('../database');
-const commands = require('./commandsHandler');
+const commands = require('./commands');
 
 class Telegram {
 	constructor() {
