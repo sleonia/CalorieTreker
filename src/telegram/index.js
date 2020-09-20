@@ -14,6 +14,11 @@ class Telegram {
 	commandsHandler() {
 		commands.start(this.bot, this.local);
 		commands.help(this.bot, this.local);
+		commands.donat(this.bot, this.local);
+		commands.contacts(this.bot, this.local);
+		// commands.show(this.bot, this.local);
+		// commands.edit(this.bot, this.local);
+		// commands.add(this.bot, this.local);
 	}
 
 	launch() {
