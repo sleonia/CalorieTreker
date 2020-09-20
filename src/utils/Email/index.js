@@ -1,13 +1,13 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require('./node_modules/nodemailer');
 const fs = require('fs');
 
 class Email {
 	constructor() {
-		this.json = JSON.parse(fs.readFileSync('src/email/.env.json'));
+		this.json = JSON.parse(fs.readFileSync('src/utils/Email/.env.json'));
 		this.transporter = this.createTransport(this.json);
 	}
 
-	createTransport() {
+	async createTransport() {
 		const transporter = nodemailer.createTransport({
 			host: this.json.host,
 			port: this.json.port,
@@ -20,23 +20,22 @@ class Email {
 		return transporter;
 	}
 
-	send(userMail) {
+	async send(userMail) {
 		const mail = {
 			from: `${this.json.auth.login}@${this.json.service}.${this.json.domen}`,
 			to: userMail,
 			subject: 'Sending Email using Node.js',
 			text: 'That was easy!'
 		};
-
 		console.log(mail);
 
 		this.transporter.sendMail(mail, ((error, info) => {
 			if (error) {
 				console.log(error);
 			} else {
-				console.log('Email sent: ' + info.response);
+				console.error('Email sent: ' + info.response);
 			}
-		})); 
+		}));
 	}
 }
 

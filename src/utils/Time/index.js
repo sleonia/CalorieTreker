@@ -17,23 +17,23 @@ class Time {
 		};
 	}
 
-	getDay() {
+	async getDay() {
 		return this.date.day;
 	}
 
-	getMonth() {
+	async getMonth() {
 		return this.date.month;
 	}
 
-	getYear() {
+	async getYear() {
 		return this.date.year;
 	}
 
-	getHours() {
+	async getHours() {
 		return this.date.hours;
 	}
 
-	getMinutes() {
+	async getMinutes() {
 		return this.date.minutes;
 	}
 }

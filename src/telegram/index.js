@@ -11,17 +11,18 @@ class Telegram {
 		this.bot = new Telegraf(fs.readFileSync('src/telegram/.env.token'));
 	}
 
-	commandsHandler() {
+	async commandsHandler() {
 		commands.start(this.bot, this.local);
 		commands.help(this.bot, this.local);
 		commands.donat(this.bot, this.local);
 		commands.contacts(this.bot, this.local);
 		// commands.show(this.bot, this.local);
 		// commands.edit(this.bot, this.local);
-		// commands.add(this.bot, this.local);
+		commands.add(this.bot, this.local);
+		commands.errorHandler(this.bot, this.local);
 	}
 
-	launch() {
+	async launch() {
 		this.commandsHandler();
 		this.bot.launch();
 	}

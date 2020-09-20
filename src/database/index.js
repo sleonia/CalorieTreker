@@ -11,7 +11,7 @@ class Database {
 		});
 	}
 
-	connect() {
+	async connect() {
 		const pool = new pg.Pool({
 			user: this.json.user,
 			host: this.json.host,
