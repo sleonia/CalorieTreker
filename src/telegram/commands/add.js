@@ -3,7 +3,4 @@ module.exports = async function add(bot, local) {
 		const message = local['commands.description'].add;
 		ctx.reply(message);
 	});
-	bot.on('text', (ctx) => {
-      ctx.reply('Thanks for the purchase!');
-	});
 };

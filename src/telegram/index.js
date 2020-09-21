@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { Telegraf } = require('telegraf');
 
-// const Database = require('../database');
+const Database = require('../database');
 const commands = require('./commands');
 
 class Telegram {
@@ -16,7 +16,7 @@ class Telegram {
 		commands.help(this.bot, this.local);
 		commands.donat(this.bot, this.local);
 		commands.contacts(this.bot, this.local);
-		// commands.show(this.bot, this.local);
+		commands.show(this.bot, this.local);
 		// commands.edit(this.bot, this.local);
 		commands.add(this.bot, this.local);
 		commands.errorHandler(this.bot, this.local);

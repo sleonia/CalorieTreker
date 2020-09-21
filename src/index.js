@@ -1,6 +1,6 @@
 const Telegram = require('./telegram');
 
-(async () => {
+const index = (async () => {
 	try {
 		let telegram = new Telegram();
 		telegram.launch();
@@ -8,3 +8,5 @@ const Telegram = require('./telegram');
 		console.error(error);
 	}
 })();
+
+module.exports = index;

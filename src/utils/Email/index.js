@@ -16,7 +16,7 @@ class Email {
 				user: this.json.auth.login,
 				pass: this.json.auth.password,
 			}
-			});
+		});
 		return transporter;
 	}
 
