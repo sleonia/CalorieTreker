@@ -1,8 +1,8 @@
 const fs = require('fs');
 const { Telegraf } = require('telegraf');
 
-const Database = require('../database');
-const commands = require('./commands');
+// const Database = require('../database');
+const Commands = require('./commands');
 
 class Telegram {
 	constructor() {
@@ -12,14 +12,14 @@ class Telegram {
 	}
 
 	async commandsHandler() {
-		commands.start(this.bot, this.local);
-		commands.help(this.bot, this.local);
-		commands.donat(this.bot, this.local);
-		commands.contacts(this.bot, this.local);
-		commands.show(this.bot, this.local);
-		// commands.edit(this.bot, this.local);
-		commands.add(this.bot, this.local);
-		commands.errorHandler(this.bot, this.local);
+		Commands.start(this.bot, this.local);
+		Commands.help(this.bot, this.local);
+		Commands.donat(this.bot, this.local);
+		Commands.contacts(this.bot, this.local);
+		Commands.show(this.bot, this.local);
+		// Commands.edit(this.bot, this.local);
+		Commands.add(this.bot, this.local);
+		Commands.errorHandler(this.bot, this.local);
 	}
 
 	async launch() {
