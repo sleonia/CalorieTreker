@@ -6,7 +6,7 @@ const { local, bot } = require('../constants');
 const Commands = require('./Commands');
 
 const Scenes = require('./Scenes');
-const stage = new Stage([Scenes.add()]);
+const stage = new Stage([Scenes.add(), Scenes.show()]);
 
 
 class Telegram {
