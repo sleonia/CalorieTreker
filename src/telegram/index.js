@@ -1,44 +1,35 @@
-const fs = require('fs');
 const { Telegraf } = require('telegraf');
-const {
-    Stage,
-    session
-  } = Telegraf;
+const { Stage, session } = Telegraf;
+
 // const Database = require('../database');
+const { local, bot } = require('../constants');
 const Commands = require('./Commands');
 
-// const Generator = require('./Scenes');
-// const generator = new Generator();
-// const add = generator.add();
-const Generator = require('./Scenes');
-const add = Generator();
-const stage = new Stage([add]);
-// const stage = new Stage([Scenes.add(), Scenes.show()]);
+const Scenes = require('./Scenes');
+const stage = new Stage([Scenes.add()]);
+
 
 class Telegram {
 	constructor() {
 		// this.database = new Database();
-		// this.scenes = new Scenes();
-		this.local = JSON.parse(fs.readFileSync('locales/ru.json'));
-		this.bot = new Telegraf(fs.readFileSync('src/telegram/.env.token'));
-		this.bot.use(session());
-		this.bot.use(stage.middleware());
+		bot.use(session());
+		bot.use(stage.middleware());
 	}
 
 	async commandsHandler() {
-		Commands.start(this.bot, this.local);
-		Commands.help(this.bot, this.local);
-		Commands.donat(this.bot, this.local);
-		Commands.contacts(this.bot, this.local);
-		Commands.show(this.bot, this.local);
-		// Commands.edit(this.bot, this.local);
-		Commands.add(this.bot, this.local);
-		Commands.errorHandler(this.bot, this.local);
+		Commands.start(bot, local);
+		Commands.help(bot, local);
+		Commands.donat(bot, local);
+		Commands.contacts(bot, local);
+		Commands.show(bot, local);
+		Commands.edit(bot, local);
+		Commands.add(bot);
+		Commands.errorHandler(bot, local);
 	}
 
 	async launch() {
 		this.commandsHandler();
-		this.bot.launch();
+		bot.launch();
 	}
 }
 

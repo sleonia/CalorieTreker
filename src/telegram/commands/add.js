@@ -1,5 +1,5 @@
-module.exports = async (bot, local) => {
+module.exports = async (bot) => {
 	bot.hears('/add', async (ctx) => {
-		ctx.scene.enter('name');
+		ctx.scene.enter('add');
 	});
 };
