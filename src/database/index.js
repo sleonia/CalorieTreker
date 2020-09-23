@@ -1,5 +1,5 @@
 const fs = require('fs');
-const pg = require('pg');
+const pg = require('./node_modules/pg');
 
 class Database {
 	constructor() {

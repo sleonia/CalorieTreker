@@ -1,6 +1,6 @@
 const Markup = require('telegraf/markup');
 
-module.exports = async function show(bot, local) {
+module.exports = async (bot, local) => {
 	bot.hears('/show', (ctx) => {
 		ctx.reply(
 			local['commands.description'].show,

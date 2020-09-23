@@ -8,10 +8,9 @@ If you have any questions - press ```/help``` and read a message.
 
 > How to run?  
 ```
-
 $> git clone https://github.com/sleonia/CalorieTreker.git
 $> cd CalorieTreker
-$> sh src/scripts/createEnvFiles.sh # create example .env* files
+$> sh src/Scripts/createEnvFiles.sh # create example .env* files
 $> npm i
 $> node src
 ```

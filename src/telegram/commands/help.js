@@ -1,4 +1,4 @@
-module.exports = async function help(bot, local) {
+module.exports = async (bot, local) => {
 	bot.hears('/help', (ctx) => {
 		let message = '';
 		local.commands.forEach((command) => {
