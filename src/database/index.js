@@ -1,14 +1,23 @@
 const fs = require('fs');
-const pg = require('./node_modules/pg');
+const pg = require('pg');
+const { createDeflateRaw } = require('zlib');
+
+/*
+console.log(res.rows[0]);
+
+{
+  user_id: '12345678',
+  username: 'EmbodimentEvil',
+  first_sign: '20/09/2020',
+  last_sign: '02/10/2020',
+  data: { years: [ [Object] ] }
+}
+*/
 
 class Database {
 	constructor() {
-		this.json = JSON.parse(fs.readFileSync('src/database/.env.json'));
-		this.pool = this.connect();
-		this.pool.query('SELECT * from persons', (err, res) => { //test db
-			console.log(res);
-			this.pool.end();
-		});
+		this.json = JSON.parse(fs.readFileSync('src/Database/.env.json'));
+		const pool = this.connect();
 	}
 
 	async connect() {
@@ -18,6 +27,11 @@ class Database {
 			database: this.json.database,
 			password: this.json.password,
 			port: this.json.port,
+		});
+		await pool.query("SELECT * from data", (err, res) => {
+			// console.log(res.rows[0]);
+			// console.log(res.rows[0].username);
+			pool.end();
 		});
 		return pool;
 	}

@@ -1,7 +1,7 @@
 const { Telegraf } = require('telegraf');
 const { Stage, session } = Telegraf;
 
-// const Database = require('../database');
+const Database = require('../Database');
 const { local, bot } = require('../constants');
 const Commands = require('./Commands');
 
