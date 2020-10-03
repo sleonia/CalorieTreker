@@ -11,13 +11,13 @@ const stage = new Stage([Scenes.add(), Scenes.show()]);
 
 class Telegram {
 	constructor() {
-		// this.database = new Database();
+		this.database = new Database();
 		bot.use(session());
 		bot.use(stage.middleware());
 	}
 
 	async commandsHandler() {
-		Commands.start(bot, local);
+		Commands.start(this.database, bot, local);
 		Commands.help(bot, local);
 		Commands.donat(bot, local);
 		Commands.contacts(bot, local);
