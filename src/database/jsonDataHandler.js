@@ -8,32 +8,37 @@ const getMonthsName = (index) => {
 	return monthsNames[index];
 };
 
-class Data { //rename class // async???
+// const defaultJsonData = (year, month, day) => {
+
+// };
+
+class JsonDataHandler { // async???
 	constructor() {
 		this.date = new Date();
 	}
 
 	setDayValueFromJson(year = 2020, month = getMonthsName(0), day = 1, json = {}, value = '') {
 		for (let i in json) {
-			if (json[i].hasOwnProperty('year') && json[i].year === 2020) {
+			if (Object.prototype.hasOwnProperty.call(json[i], 'year') && json[i].year === 2020) {
 				this.setDayValueFromJson(year, month, day, json[i].months);
-			} else if (json[i].hasOwnProperty(month) && json[i].months === month) {
+			} else if (Object.prototype.hasOwnProperty.call(json[i], month) && json[i].months === month) {
 				this.setDayValueFromJson(year, month, day, json[i][month]);
 			} else {
 				for (let k in json) {
 					if (json[k][month] && json[k][month][day - 1]) {
-						console.log(json[k][month][day - 1][day]);
 						json[k][month][day - 1][day] = value;
+						break;
 					}
 				}
 			}
 		}
-		return true;
 	}
 	
 	addNewUser(userInfo) {
+		console.log(userInfo);
 		const month = getMonthsName(this.date.getMonth());
-		const day = this.date.getDay();
+		const day = this.date.getDate();
+		console.log(day);
 		let defaultData = {
 			"years": [
 				{
@@ -55,6 +60,7 @@ class Data { //rename class // async???
 			last_sign: this.getFullDate(),
 			data: JSON.stringify(defaultData),
 		};
+		console.log(newUser);
 		return newUser;
 	}
 
@@ -79,26 +85,8 @@ class Data { //rename class // async???
 	}
 
 	getFullDate() {
-		return `${this.date.getDay()}/${this.date.getMonth()}/${this.date.getFullYear()}/`;
+		return `${this.date.getDate()}/${this.date.getMonth()}/${this.date.getFullYear()}/`;
 	}
 }
 
-let data = new Data();
-// console.log(data.addNewUser({id: 0, username: 'EmbodimentEvil'}));
-// console.log(JSON.parse(data.addItem(
-
-let json = JSON.parse(
-'{"years":[{"year":2020,"months":[{"september":[{"29":"Fish 250\\nSnacks 340\\nBread 500\\n"},{"30":"Milk shake 600\\nMeat and bread 400\\n"}]},{"october":[{"1":"Apple 100\\nIce-cream 800\\nBanana 200\\n"},{"2":"Milk 200\\nCookies 400\\nCoca cola 240\\n"},{"3":"Protein shake 500\\nCookies 400\\nChocolate 700\\n"}]}]}]}'
-).years;
-
-console.log(data.setDayValueFromJson(
-	2020, 'october', '2', json
-));
-
-for (let i in json) {
-	for (let j in json[i]) {
-		for (let k in json[i][j]) {
-			console.log(json[i][j][k]);
-		}
-	}
-}
+module.exports = JsonDataHandler;
