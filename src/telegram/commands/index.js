@@ -6,6 +6,7 @@ const show = require('./show');
 const add = require('./add');
 const edit = require('./edit');
 const errorHandler = require('./errorHandler');
+const today = require('./today');
 
 module.exports = {
 	start,
@@ -16,4 +17,5 @@ module.exports = {
 	edit,
 	add,
 	errorHandler,
+	today,
 };

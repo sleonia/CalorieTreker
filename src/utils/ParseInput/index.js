@@ -10,5 +10,6 @@ module.exports = (message) => {
 	food.forEach(element => {
 		obj.push(element.split(' '));
 	});
-	console.log(obj);
+	obj.pop();
+	return obj;
 };

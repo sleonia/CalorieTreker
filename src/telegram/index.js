@@ -4,7 +4,7 @@ const Scenes = require('./Scenes');
 const stage = new Stage([Scenes.add(), Scenes.show()]);
 
 const Database = require('../Database');
-const DataHandler = require('../DataH\andler');
+const DataHandler = require('../DataHandler');
 const { local, bot } = require('../constants');
 const Commands = require('./Commands');
 
@@ -26,6 +26,7 @@ class Telegram {
 		Commands.show(bot, local);
 		Commands.edit(bot, local);
 		Commands.add(bot);
+		Commands.today(this.database, this.dataHandler, bot, local);
 		Commands.errorHandler(bot, local);
 	}
 
