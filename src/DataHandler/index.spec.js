@@ -1,5 +1,5 @@
-const JsonDataHandler = require('../jsonDataHandler');
-const { defaultJsonData, getMonthsName } = require('../constants');
+const JsonDataHandler = require('../Database/jsonDataHandler');
+const { defaultJsonData, getMonthsName } = require('../Database/constants');
 let jsonDataHandler = new JsonDataHandler();
 
 const userInfo = {
@@ -15,7 +15,7 @@ const user = {
 	username: 'EmbodimentEvil',
 	first_sign: jsonDataHandler.getFullDate(),
 	last_sign: jsonDataHandler.getFullDate(),
-	data: defaultJsonData,
+	data: defaultJsonData(2020, 'march', 1),
 };
 
 const date = new Date();
@@ -28,9 +28,9 @@ test('JsonDataHandler.setDayValueToJson', () => {
 	).toEqual(JSON.parse('{"years":[{"year":2020,"months":[{"october":[{"1":"12345"}]}]}]}'));
 });
 
-test('JsonDataHandler.addNewUser', () => {
+test('JsonDataHandler.getNewUser', () => {
 	expect(
-		jsonDataHandler.addNewUser(userInfo)
+		jsonDataHandler.getNewUser(userInfo)
 	).toEqual(user);
 });
 

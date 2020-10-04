@@ -32,10 +32,19 @@ class Database {
 		// this.pool.query(`INSERT INTO '${this.json.database}' (${valueType}) VALUES ()`);
 	}
 
-	getAllUserDataById(id) {
-		return this.pool.query(`SELECT * FROM '${this.json.database}' WHERE user_id='${id}'`)
-			.then(res => res.rows[0])
-			.catch(() => null);
+	// select(value, valu)
+
+	addNewUser(newUser) {
+		const newData = JSON.stringify(newUser.data);
+		this.pool.query(`INSERT INTO ${this.json.table} (username, user_id, first_sign, last_sign, data) VALUES ('${newUser.username}', '${newUser.user_id}', '${newUser.first_sign}', '${newUser.last_sign}', '${newData}')`);
+	}
+
+	async getAllUsersDataById(id) {
+		return this.pool.query(`SELECT * FROM ${this.json.table} WHERE user_id='${id}'`)
+			.then(res => {
+				return res.rows[0];
+			})
+			.catch(() => undefined);
 	}
 
 	disconnect() {

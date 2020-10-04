@@ -1,8 +1,4 @@
-const JsonDataHandler = require('../jsonDataHandler');
-const {
-	getMonthsName,
-	defaultJsonData,
-} = require('../constants');
+const { getMonthsName, defaultJsonData } = require('../constants');
 
 test('getMonthsName ', () => {
 	expect(
