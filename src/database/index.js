@@ -29,7 +29,7 @@ class Database {
 			`);
 	}
 
-	async getAllUsersDataById(id) {
+	async getAllUserDataById(id) {
 		return this.pool.query(`SELECT * FROM ${this.json.table} WHERE user_id='${id}'`)
 			.then(res => {
 				return res.rows[0];

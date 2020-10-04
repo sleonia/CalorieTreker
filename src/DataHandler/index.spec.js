@@ -20,6 +20,13 @@ const user = {
 	data: defaultJsonData(date.getFullYear(), getMonthsName(date.getMonth()), date.getDate()),
 };
 
+test('JsonDataHandler.getDayValueFromJson', () => {
+	let json = defaultJsonData(2020, 'october', 1, '12345');
+	expect(
+		jsonDataHandler.getDayValueFromJson(2020, 'october', 1, json.years)
+	).toEqual('12345');
+});
+
 test('JsonDataHandler.setDayValueToJson', () => {
 	let json = defaultJsonData(2020, 'october', 1);
 	jsonDataHandler.setDayValueToJson(2020, 'october', 1, json.years, '12345');

@@ -2,8 +2,8 @@ const parser = require('../../Utils/ParseInput');
 
 module.exports = async (db, dataHandler, bot, local) => {
 	bot.hears('/today', async (ctx) => {
-		const dailyStatisticsFromDb = 'Салат 100\nМолоко 200\nПеченье 345\n';
-		const dailyStatisticsArray = parser(dailyStatisticsFromDb);
+		const userData = await db.getAllUserDataById(ctx.message.from.id);
+		const dailyStatisticsArray = parser(dataHandler.getDayValueFromJson(userData.data.years));
 		let sum = 0;
 		for (const i in dailyStatisticsArray) {
 			sum += Number(dailyStatisticsArray[i][1]);

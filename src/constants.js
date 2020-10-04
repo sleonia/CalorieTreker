@@ -14,7 +14,7 @@ const getMonthsName = (index) => {
 	return monthsNames[index];
 };
 
-const defaultJsonData = (year = 2020, month = 'may', day = 1) => {
+const defaultJsonData = (year = 2020, month = 'may', day = 1, value = '') => {
 	let defaultData = {
 		'years': [
 			{
@@ -26,7 +26,7 @@ const defaultJsonData = (year = 2020, month = 'may', day = 1) => {
 	defaultData.years[0].months[0] = {};
 	defaultData.years[0].months[0][month] = [];
 	defaultData.years[0].months[0][month][0] = {};
-	defaultData.years[0].months[0][month][0][day] = '';
+	defaultData.years[0].months[0][month][0][day] = value;
 	return defaultData;
 };
 

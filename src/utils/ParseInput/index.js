@@ -4,7 +4,7 @@
 Печенье 345
 */
 
-module.exports = (message) => {
+module.exports = (message = '') => {
 	let food = message.split('\n');
 	let obj = [];
 	food.forEach(element => {
