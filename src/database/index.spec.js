@@ -1,4 +1,4 @@
-const Database = require('../index');
+const Database = require('./index');
 // const { defaultJsonData } = require('../constants');
 let database = new Database();
 
@@ -23,6 +23,7 @@ test('database.getAllUsersDataById', async () => {
 });
 
 test('database.getAllUsersDataById', async () => {
+	database.addNewUser(user);
   const data = await database.getAllUsersDataById(12345678);
 	expect(data).toEqual(user);
 });

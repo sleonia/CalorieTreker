@@ -1,6 +1,8 @@
-const JsonDataHandler = require('../Database/jsonDataHandler');
-const { defaultJsonData, getMonthsName } = require('../Database/constants');
+const JsonDataHandler = require('.');
+const { defaultJsonData, getMonthsName } = require('../constants');
 let jsonDataHandler = new JsonDataHandler();
+
+const date = new Date();
 
 const userInfo = {
   'id': '361912587',
@@ -15,10 +17,8 @@ const user = {
 	username: 'EmbodimentEvil',
 	first_sign: jsonDataHandler.getFullDate(),
 	last_sign: jsonDataHandler.getFullDate(),
-	data: defaultJsonData(2020, 'march', 1),
+	data: defaultJsonData(date.getFullYear(), getMonthsName(date.getMonth()), date.getDate()),
 };
-
-const date = new Date();
 
 test('JsonDataHandler.setDayValueToJson', () => {
 	let json = defaultJsonData(2020, 'october', 1);
@@ -49,6 +49,6 @@ test('JsonDataHandler.getFullDate', () => {
 	expect(
 		jsonDataHandler.getFullDate()
 	).toBe(
-		`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+		`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
 	);
 });

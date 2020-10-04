@@ -1,7 +1,7 @@
 const {
 	getMonthsName,
 	defaultJsonData,
-} = require('../Database/constants');
+} = require('../constants');
 
 class DataHandler {
 	constructor() {
@@ -49,7 +49,7 @@ class DataHandler {
 			last_sign: this.getFullDate(),
 			data: defaultJsonData(
 				this.date.getFullYear(),
-				this.date.getMonth(),
+				getMonthsName(this.date.getMonth()),
 				this.date.getDate()
 			),
 		};
@@ -65,7 +65,7 @@ class DataHandler {
 	}
 
 	getFullDate() {
-		return `${this.date.getDate()}/${this.date.getMonth()}/${this.date.getFullYear()}`;
+		return `${this.date.getDate()}/${this.date.getMonth() + 1}/${this.date.getFullYear()}`;
 	}
 }
 
