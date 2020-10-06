@@ -19,12 +19,11 @@ class Database {
 	}
 
 	async addNewUser(newUser) {
-		const newData = JSON.stringify(newUser.data);
 		this.pool.query(
 			`INSERT INTO ${this.json.table} (username, user_id, first_sign, last_sign, data)
 				VALUES (
 					'${newUser.username}', '${newUser.user_id}',
-					'${newUser.first_sign}', '${newUser.last_sign}', '${newData}'
+					'${newUser.first_sign}', '${newUser.last_sign}', '${JSON.stringify(newUser.data)}'
 				)
 			`);
 	}
@@ -38,14 +37,21 @@ class Database {
 	}
 
 	async updateDate(newFullDate, id) {
-		// id = 361912587;
-		// console.log(1234);
 		return this.getAllUserDataById(id)
 			.then(() => {
-				this.pool.query(`UPDATE data SET last_sign='10/10/2020' WHERE user_id='${id}'`);
+				this.pool.query(`UPDATE ${this.json.table} SET last_sign='${newFullDate}' WHERE user_id='${id}'`);
 				return true;
 			})
-			.catch(() => false);
+			.catch(() => undefined);
+	}
+
+	async updateData(newData, id) {
+		return this.getAllUserDataById(id)
+			.then(() => {
+				this.pool.query(`UPDATE ${this.json.table} SET data='${JSON.stringify(newData)}' WHERE user_id='${id}'`);
+				return true;
+			})
+			.catch(() => undefined);
 	}
 
 	disconnect() {

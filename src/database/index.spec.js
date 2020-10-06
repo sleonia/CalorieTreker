@@ -37,3 +37,10 @@ test('database.updateDate', async () => {
 	expect(data.last_sign).toBe(newFullDate);
 });
 
+test('database.updateData', async () => {
+	await database.addNewUser(user);
+	await database.updateData(JSON.parse('{"years":[{"year":2020,"months":[{"september":[{"1":"Bread 500\\n"}]}]}]}'), user.user_id);
+	const data = await database.getAllUserDataById(user.user_id);
+	expect(data.data).toEqual(JSON.parse('{"years":[{"year":2020,"months":[{"september":[{"1":"Bread 500\\n"}]}]}]}'));
+});
+
