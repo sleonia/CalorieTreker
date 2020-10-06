@@ -59,3 +59,22 @@ test('JsonDataHandler.getFullDate', () => {
 		`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
 	);
 });
+
+test('JsonDataHandler.addNewYear', () => {
+	const newData = defaultJsonData(date.getFullYear(), getMonthsName(date.getMonth()), date.getDate());
+	jsonDataHandler.addNewYear(2021, newData);
+	expect(newData.years.length).toBe(2);
+});
+
+test('JsonDataHandler.addNewMonth', () => {
+	const newData = defaultJsonData(date.getFullYear(), getMonthsName(date.getMonth()), date.getDate());
+	jsonDataHandler.addNewMonth(getMonthsName(date.getMonth() + 1), newData);
+	expect(newData.years[newData.years.length - 1].months.length).toBe(2);
+});
+
+// test('JsonDataHandler.addNewDay', () => {
+// 	const newData = defaultJsonData(date.getFullYear(), getMonthsName(date.getMonth()), date.getDate());
+// 	jsonDataHandler.addNewDay(45, newData);
+// 	expect(2).toBe(2);
+// });
+

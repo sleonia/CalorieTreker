@@ -65,6 +65,27 @@ class DataHandler {
 		}
 	}
 
+	addNewYear(year = 2020, json) {
+		const newYear = {
+			'year': year,
+			'months': []
+		};
+
+		json.years.push(newYear);
+	}
+
+	addNewMonth(month = getMonthsName(0), json) {
+		const newMonth = {};
+		newMonth[month] = [];
+		json.years[json.years.length - 1].months.push(newMonth);
+	}
+
+	// addNewDay(day, json) { //dont working
+	// 	const yearsLength = json.years.length - 1;
+	// 	// console.log(json.years[yearsLength].months);
+	// 	console.log(json.years[yearsLength].months[json.years[yearsLength].months.length - 1]);
+	// }
+
 	getFullDate() {
 		return `${this.date.getDate()}/${this.date.getMonth() + 1}/${this.date.getFullYear()}`;
 	}
