@@ -12,18 +12,28 @@ const user = {
 
 test('database.addNewUser', async () => {
 	const newUser = {...user, user_id: '123456789'};
-	database.addNewUser(newUser);
+	await database.addNewUser(newUser);
 	const data = await database.getAllUserDataById(123456789);
 	expect(data).toEqual(newUser);
 });
 
-test('database.getAllUserDataById', async () => {
+test('database.getAllUserDataById: invalid', async () => {
   const data = await database.getAllUserDataById(0);
   expect(data).toBe(undefined);
 });
 
-test('database.getAllUserDataById', async () => {
-	database.addNewUser(user);
+test('database.getAllUserDataById: valid', async () => {
+	await database.addNewUser(user);
   const data = await database.getAllUserDataById(12345678);
 	expect(data).toEqual(user);
 });
+
+test('database.updateDate', async () => {
+	const newFullDate = '10/10/2020';
+	const newUser = {...user, user_id: '1234567890'};
+	await database.addNewUser(newUser);
+	await database.updateDate(newFullDate, 1234567890);
+	const data = await database.getAllUserDataById(1234567890);
+	expect(data.last_sign).toBe(newFullDate);
+});
+
