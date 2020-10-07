@@ -1,5 +1,4 @@
 const Database = require('./index');
-// const { defaultJsonData } = require('../constants');
 let database = new Database();
 
 const user = {

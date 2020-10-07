@@ -1,5 +1,5 @@
-const { getMonthsName } = require('../Utils/GetMonthsName');
-const { defaultJsonData } = require('../Utils/DefaultJsonData');
+const getMonthsName = require('../Utils/GetMonthsName');
+const defaultJsonData = require('../Utils/DefaultJsonData');
 
 class DataHandler {
 	constructor() {
@@ -89,6 +89,10 @@ class DataHandler {
 
 	getFullDate() {
 		return `${this.date.getDate()}/${this.date.getMonth() + 1}/${this.date.getFullYear()}`;
+	}
+
+	getDate() {
+		return this.date;
 	}
 }
 

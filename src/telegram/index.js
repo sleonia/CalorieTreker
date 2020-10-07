@@ -21,7 +21,7 @@ class Telegram {
 		Commands.contacts(bot, local);
 		Commands.show(bot, local);
 		Commands.edit(bot, local);
-		Commands.add(bot);
+		Commands.add(bot, local);
 		Commands.today(database, dataHandler, bot, local);
 		Commands.errorHandler(bot, local);
 	}

@@ -1,5 +1,7 @@
 const JsonDataHandler = require('.');
-const { defaultJsonData, getMonthsName } = require('../constants');
+const getMonthsName = require('../Utils/GetMonthsName');
+const defaultJsonData = require('../Utils/DefaultJsonData');
+
 let jsonDataHandler = new JsonDataHandler();
 
 const date = new Date();
@@ -25,6 +27,13 @@ test('JsonDataHandler.getDayValueFromJson', () => {
 	expect(
 		jsonDataHandler.getDayValueFromJson(2020, 'october', 1, json.years)
 	).toEqual('12345');
+});
+
+test('JsonDataHandler.getDayValueFromJson: invalid', () => {
+	let json = defaultJsonData(2020, 'october', 1);
+	expect(
+		jsonDataHandler.getDayValueFromJson(2020, 'october', 2, json.years)
+	).toBe(undefined);
 });
 
 test('JsonDataHandler.setDayValueToJson', () => {
