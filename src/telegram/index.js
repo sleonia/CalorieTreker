@@ -1,32 +1,28 @@
 const { Telegraf } = require('telegraf');
 const { Stage, session } = Telegraf;
 const Scenes = require('./Scenes');
-const stage = new Stage([Scenes.add(), Scenes.show()]);
 
-const Database = require('../Database');
-const DataHandler = require('../DataHandler');
-const { local, bot } = require('../constants');
+
+const { local, bot, database, dataHandler } = require('../constants');
 const Commands = require('./Commands');
-
 
 
 class Telegram {
 	constructor() {
-		this.database = new Database();
-		this.dataHandler = new DataHandler();
+		const stage = new Stage([Scenes.add(), Scenes.show()]);
 		bot.use(session());
 		bot.use(stage.middleware());
 	}
 
 	async commandsHandler() {
-		Commands.start(this.database, this.dataHandler, bot, local);
+		Commands.start(database, dataHandler, bot, local);
 		Commands.help(bot, local);
 		Commands.donat(bot, local);
 		Commands.contacts(bot, local);
 		Commands.show(bot, local);
 		Commands.edit(bot, local);
 		Commands.add(bot);
-		Commands.today(this.database, this.dataHandler, bot, local);
+		Commands.today(database, dataHandler, bot, local);
 		Commands.errorHandler(bot, local);
 	}
 

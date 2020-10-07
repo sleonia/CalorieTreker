@@ -1,7 +1,5 @@
-const {
-	getMonthsName,
-	defaultJsonData,
-} = require('../constants');
+const { getMonthsName } = require('../Utils/GetMonthsName');
+const { defaultJsonData } = require('../Utils/DefaultJsonData');
 
 class DataHandler {
 	constructor() {
@@ -82,11 +80,11 @@ class DataHandler {
 
 	addNewDay(day, json) {
 		const yearsLength = json.years.length - 1;
-		let tmp = json.years[yearsLength].months[json.years[yearsLength].months.length - 1];
+		let lastMonth = json.years[yearsLength].months[json.years[yearsLength].months.length - 1];
 		const newDay = {};
 
 		newDay[day] = '';
-		tmp[Object.keys(tmp)].push(newDay);
+		lastMonth[Object.keys(lastMonth)].push(newDay);
 	}
 
 	getFullDate() {

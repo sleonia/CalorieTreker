@@ -81,4 +81,3 @@ test('JsonDataHandler.addNewDay', () => {
 		`{"years":[{"year":2020,"months":[{"${getMonthsName(date.getMonth())}":[{"${date.getDate()}":""},{"45":""}]}]}]}`
 	);
 });
-

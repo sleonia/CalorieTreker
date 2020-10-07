@@ -1,5 +1,5 @@
 const Scene = require('telegraf/scenes/base');
-const { local } = require('../../constants');
+const { local, database, dataHandler } = require('../../constants');
 const ui = require('../../Utils/UserInteraction');
 
 module.exports = () => {
@@ -7,12 +7,13 @@ module.exports = () => {
 	add.enter((ctx) => ctx.reply(local['commands.description']['add']));
 	add.on('text', async (ctx) => {
 		const userData = ctx.message.text;
-		console.log(add);
+		console.log(dataHandler.getFullDate());
+
 
 		// insert or update
 
 		let message = local['user.interaction']['bon.appetite'];
-		message += await ui.makePoliteComment();
+		message += ' ' + await ui.makePoliteComment();
 		await ctx.reply(message);
 		await ctx.scene.leave();
 	});
