@@ -72,9 +72,13 @@ test('JsonDataHandler.addNewMonth', () => {
 	expect(newData.years[newData.years.length - 1].months.length).toBe(2);
 });
 
-// test('JsonDataHandler.addNewDay', () => {
-// 	const newData = defaultJsonData(date.getFullYear(), getMonthsName(date.getMonth()), date.getDate());
-// 	jsonDataHandler.addNewDay(45, newData);
-// 	expect(2).toBe(2);
-// });
+test('JsonDataHandler.addNewDay', () => {
+	const newData = defaultJsonData(date.getFullYear(), getMonthsName(date.getMonth()), date.getDate());
+	jsonDataHandler.addNewDay(45, newData);
+	expect(
+		JSON.stringify(newData)
+		).toBe(
+		`{"years":[{"year":2020,"months":[{"${getMonthsName(date.getMonth())}":[{"${date.getDate()}":""},{"45":""}]}]}]}`
+	);
+});
 

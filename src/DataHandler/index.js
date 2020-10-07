@@ -80,11 +80,14 @@ class DataHandler {
 		json.years[json.years.length - 1].months.push(newMonth);
 	}
 
-	// addNewDay(day, json) { //dont working
-	// 	const yearsLength = json.years.length - 1;
-	// 	// console.log(json.years[yearsLength].months);
-	// 	console.log(json.years[yearsLength].months[json.years[yearsLength].months.length - 1]);
-	// }
+	addNewDay(day, json) {
+		const yearsLength = json.years.length - 1;
+		let tmp = json.years[yearsLength].months[json.years[yearsLength].months.length - 1];
+		const newDay = {};
+
+		newDay[day] = '';
+		tmp[Object.keys(tmp)].push(newDay);
+	}
 
 	getFullDate() {
 		return `${this.date.getDate()}/${this.date.getMonth() + 1}/${this.date.getFullYear()}`;
