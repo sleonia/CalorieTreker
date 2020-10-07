@@ -1,34 +1,28 @@
 const Scene = require('telegraf/scenes/base');
 const { local, database, dataHandler } = require('../../constants');
 const ui = require('../../Utils/UserInteraction');
+const getMonthsName = require('../../Utils/GetMonthsName');
 
 module.exports = () => {
 	const add = new Scene('add');
 	add.enter((ctx) => ctx.reply(local['commands.description']['add']));
 	add.on('text', async (ctx) => {
+		let userData = await database.getAllUserDataById(ctx.message.from.id);
 
-		const userData = await database.getAllUserDataById(ctx.message.from.id);
+		dataHandler.setDayValueToJson(
+			dataHandler.getDate().getFullYear(),
+			getMonthsName(dataHandler.getDate().getMonth()),
+			dataHandler.getDate().getDate(),
+			userData.data.years,
+			ctx.message.text
+		);
 
-		// daa
-		// dataHandler.setDayValueToJson(database.getDate().getFullYear(), )
+		database.updateData(userData.data, userData.user_id);
 
-		// await database.updateData(newFullDate, userData.user_id);
-
-		console.log(userData);
-		database.updateDate(dataHandler.getFullDate() , ctx.message.from.id);
-
-		// const userData = ctx.message.text;
-		// console.log(dataHandler.date().getDate());
-
-		// console.log(userData);
-
-
-		// // insert or update
-
-		// let message = local['user.interaction']['bon.appetite'];
-		// message += ' ' + await ui.makePoliteComment();
-		// await ctx.reply(message);
-		// await ctx.scene.leave();
+		let message = local['user.interaction']['bon.appetite'];
+		message += ' ' + await ui.makePoliteComment();
+		await ctx.reply(message);
+		await ctx.scene.leave();
 	});
 	return add;
 };

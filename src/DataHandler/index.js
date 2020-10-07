@@ -38,9 +38,7 @@ class DataHandler {
 				return this.getDayValueFromJson(year, month, day, json[i][month]);
 			} else {
 				for (let k in json) {
-					if (json[k][month] && json[k][month][day - 1]) {
-						return json[k][month][day - 1][day];
-					}
+					return json[k][month][json[k][month].length - 1][day];
 				}
 			}
 		}
@@ -54,10 +52,12 @@ class DataHandler {
 				this.setDayValueToJson(year, month, day, json[i][month], value);
 			} else {
 				for (let k in json) {
-					if (json[k][month] && json[k][month][day - 1]) {
-						json[k][month][day - 1][day] = value;
-						break;
+					if (json[k][month][json[k][month].length - 1][day] === '') {
+						json[k][month][json[k][month].length - 1][day] = value;
+					} else {
+						json[k][month][json[k][month].length - 1][day] += '\n' + value;
 					}
+					break;
 				}
 			}
 		}
