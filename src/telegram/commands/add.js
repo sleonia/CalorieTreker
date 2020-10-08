@@ -6,7 +6,6 @@ module.exports = async (bot, local) => {
 	
 		if (userData === undefined) {
 			await ctx.reply(local['user.interaction']['untracked.user']);
-			await ctx.scene.leave();
 		} else {
 			ctx.scene.enter('add');
 		}

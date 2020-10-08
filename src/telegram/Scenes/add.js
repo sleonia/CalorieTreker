@@ -4,9 +4,9 @@ const ui = require('../../Utils/UserInteraction');
 const getMonthsName = require('../../Utils/GetMonthsName');
 
 module.exports = () => {
-	const add = new Scene('add');
-	add.enter((ctx) => ctx.reply(local['commands.description']['add']));
-	add.on('text', async (ctx) => {
+	const scene = new Scene('add');
+	scene.enter((ctx) => ctx.reply(local['commands.description']['add']));
+	scene.on('text', async (ctx) => {
 		let userData = await database.getAllUserDataById(ctx.message.from.id);
 
 		dataHandler.setDayValueToJson(
@@ -24,5 +24,5 @@ module.exports = () => {
 		await ctx.reply(message);
 		await ctx.scene.leave();
 	});
-	return add;
+	return scene;
 };
