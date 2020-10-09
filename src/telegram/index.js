@@ -2,10 +2,8 @@ const { Telegraf } = require('telegraf');
 const { Stage, session } = Telegraf;
 const Scenes = require('./Scenes');
 
-
 const { local, bot, database, dataHandler } = require('../constants');
 const Commands = require('./Commands');
-
 
 class Telegram {
 	constructor() {

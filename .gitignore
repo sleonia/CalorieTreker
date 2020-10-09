@@ -5,3 +5,4 @@ node_modules
 message.from.json
 .eslint**
 TODO
+statistic.json
