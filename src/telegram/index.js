@@ -9,7 +9,7 @@ const Commands = require('./Commands');
 
 class Telegram {
 	constructor() {
-		const stage = new Stage([Scenes.add(), Scenes.show(), Scenes.edit()]);
+		const stage = new Stage([Scenes.add(), Scenes.edit()]);
 		bot.use(session());
 		bot.use(stage.middleware());
 	}

@@ -5,27 +5,12 @@ databaseContent='{
 	"user": "qwerty",
 	"host": "127.0.0.1",
 	"database": "databaseName",
+	"table": "table",
 	"password": "12345",
 	"port": "5432"
 }'
 
 echo $databaseContent > $databasePath
-
-# Create email config file
-emailPath='./src/email/.env.json'
-emailContent='{
-	"host": "smtp.mail.ru",
-	"port": 465,
-	"secure": true,
-	"service": "mail",
-	"domen": "ru",
-	"auth": {
-		"login": "login",
-		"password": "password"
-	}
-}'
-
-echo $emailContent > $emailPath
 
 # Create telegram config file
 telegramPath='./src/telegram/.env'

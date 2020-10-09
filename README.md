@@ -18,6 +18,5 @@ $> node src
 > How to set up .env* files?
 ```
 $> sh setUpTelegramEnv.sh
-$> sh setUpEmailEnv.sh
 $> sh setUpDatabaseEnv.sh
 ```
