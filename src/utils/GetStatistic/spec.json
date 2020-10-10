@@ -1,0 +1,63 @@
+{
+	"years": [
+		{
+			"year": 2020,
+			"months": [
+				{
+					"october": [
+						{
+							"1":"Bread 950\nMilk 340\nSugar 500\n"
+						},
+						{
+							"2":"Meat 450\nCheese 540\nPineapple 300\n"
+						},
+						{
+							"3":"Apples 350\nFish 240\nWatermelon 500\n"
+						}
+					]
+				},
+				{
+					"september": [
+						{
+							"29":"Fish 250\nSnacks 340\nBread 500\n"
+						},
+						{
+							"30":"Bread 950\nMilk 340\nSugar 500\n"
+						}
+					]
+				}
+			]
+		},
+	{
+			"year": 2021,
+			"months": [
+				{
+					"january": [
+						{
+							"15":"Lemon 450\nCorn 940\nOlive 340\n"
+						},
+						{
+							"16":"Hamburger 950\nEggs 340\n"
+						}
+					]
+				},
+				{
+					"february": [
+						{
+							"1":"Fish 250\nSnacks 340\nBread 500\n"
+						},
+						{
+							"2":"Sandwich 550\nBread 354\nCream 200\n"
+						},
+						{
+							"3":"Kebab 320\nFish 240\nBacon 500\n"
+						},
+						{
+							"4":"Carrot 350\nSalads 140\nWatermelon 345\n"
+						}
+					]
+				}
+			]
+	}
+	]
+}

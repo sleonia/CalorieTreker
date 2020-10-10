@@ -2,14 +2,22 @@ const Markup = require('telegraf/markup');
 const fs = require('fs');
 
 const { local, database, dataHandler } = require('../../constants');
-const { getStatistic } = require('../../Utils/GetStatistic');
+const saveStatisticToFile = require('../../Utils/GetStatistic/saveStatisticToFile');
+const {
+	getCurrentYear,
+	getCurrentMonth,
+	getCurrentWeek,
+	getCurrentDay
+} = require('../../Utils/GetStatistic/');
 
-function sendStatisticFile(ctx) {
+async function sendStatisticFile(ctx, getData) {
+		saveStatisticToFile(
+			await getData(ctx.from.id)
+		);
 		ctx.telegram.sendDocument(ctx.from.id, {
 			source: fs.createReadStream('statistic.json'),
 			filename: 'statistic.json'
-		}).catch(function(error){ console.log(error); });
-		
+		}).catch(function(error){ console.log(error); });		
 }
 
 module.exports = async (bot) => {
@@ -22,8 +30,8 @@ module.exports = async (bot) => {
 	]).extra();
 			ctx.reply(local['commands.description']['show'], inlineMessageRatingKeyboard);
 	});
-	bot.action('getYearStatistic', (ctx) => sendStatisticFile(ctx));
-	bot.action('getMonthStatistic', (ctx) => ctx.reply('🎉 getMonthStatistic! 🎉'));
-	bot.action('getWeekStatistic', (ctx) => ctx.reply('🎉 getWeekStatistic! 🎉'));
-	bot.action('getDayStatistic', (ctx) => ctx.reply('🎉 getDayStatistic! 🎉'));
+	bot.action('getYearStatistic', (ctx) => sendStatisticFile(ctx, getCurrentYear));
+	bot.action('getMonthStatistic', (ctx) => sendStatisticFile(ctx, getCurrentMonth));
+	bot.action('getWeekStatistic', (ctx) => sendStatisticFile(ctx, getCurrentWeek));
+	bot.action('getDayStatistic', (ctx) => sendStatisticFile(ctx, getCurrentDay));
 };

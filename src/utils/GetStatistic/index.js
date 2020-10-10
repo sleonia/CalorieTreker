@@ -9,19 +9,19 @@ const getCurrentYear = async (id) => {
 	const userdata = await database.getAllUserDataById(id);
 	for (const i in userdata.data.years) {
 		if (userdata.data.years[i].year === dataHandler.getDate().getFullYear()) {
-			return JSON.stringify(userdata.data.years[i], null, '\t');
+			return userdata.data.years[i];
 		}
 	}
 };
 
-const getCurrentMonth = async (id) => { //testing
-	const userdata = database.getAllUserDataById(id);
+const getCurrentMonth = async (id) => {
+	const userdata = await database.getAllUserDataById(id);
 	const currentMonth = getMonthsName(dataHandler.getDate().getMonth());
 
 	for (const i in userdata.data.years) {
 		for (const k in userdata.data.years[i].months) {
-			if (userdata.data.years[i].months[k] === currentMonth) {
-				return JSON.stringify(userdata.data.years[i].months[k], null, '\t');
+			if (Object.keys(userdata.data.years[i].months[k])[0] === currentMonth) {
+				return userdata.data.years[i].months[k];
 			}
 		}
 	}
@@ -31,21 +31,18 @@ const getCurrentWeek = async (id) => {
 	const userdata = await database.getAllUserDataById(id);
 	const currentMonth = getMonthsName(dataHandler.getDate().getMonth());
 
-	console.log(currentMonth);
-
 	for (const i in userdata.data.years) {
 		for (const k in userdata.data.years[i].months) {
 			const key = Object.keys(userdata.data.years[i].months[k]);
 			if (key[0] === currentMonth) {
-				console.log(userdata.data.years[i].months[k][key]);
-				return JSON.stringify(userdata.data.years[i].months[k][key].splice(-7), null, '\t');
+				return userdata.data.years[i].months[k][key].slice(-7);
 			}
 		}
 	}
 };
 
-const getCurrentDay = async (id) => { //testing
-	const userdata = database.getAllUserDataById(id);
+const getCurrentDay = async (id) => {
+	const userdata = await database.getAllUserDataById(id);
 	return dataHandler.getDayValueFromJson(
 		dataHandler.getDate().getFullYear(),
 		getMonthsName(dataHandler.getDate().getMonth()),
@@ -53,15 +50,5 @@ const getCurrentDay = async (id) => { //testing
 		userdata.data.years
 	);
 };
-
-// const run = async () => {
-//   writeFileAsync(`statistic.json`, await getYear(361912587), async (err) => {
-// 		if (err) throw err;
-// 		console.log('The file has been saved!');
-// 	});
-// };
-
-getCurrentWeek('361912587').then((data) => console.log(data));
-
 
 module.exports = { getCurrentYear, getCurrentMonth, getCurrentWeek, getCurrentDay };
