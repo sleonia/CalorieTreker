@@ -2,7 +2,7 @@ const Markup = require('telegraf/markup');
 const fs = require('fs');
 
 const { local, database, dataHandler } = require('../../constants');
-const saveStatisticToFile = require('../../Utils/GetStatistic/saveStatisticToFile');
+const saveFile = require('../../Utils/SaveFile');
 const {
 	getCurrentYear,
 	getCurrentMonth,
@@ -11,7 +11,7 @@ const {
 } = require('../../Utils/GetStatistic/');
 
 async function sendStatisticFile(ctx, getData) {
-		saveStatisticToFile(
+		saveFile(
 			await getData(ctx.from.id)
 		);
 		ctx.telegram.sendDocument(ctx.from.id, {
