@@ -3,9 +3,6 @@ const { local, database, dataHandler } = require('../../constants');
 const ui = require('../../Utils/UserInteraction');
 const getMonthsName = require('../../Utils/GetMonthsName');
 
-const fs = require('fs');
-const testJson = JSON.parse(fs.readFileSync('src/Utils/GetStatistic/spec.json'));////////delete
-
 function getIndexByYear(year = 2020, json = {}) {
 	for (const i in json.years) {
 		if (json.years[i].year === year) {
@@ -14,24 +11,30 @@ function getIndexByYear(year = 2020, json = {}) {
 	}
 }
 
-function getIndexByMonth(month = 'may', json = {}) {
-	for (const i in json) {
-		for (const k in json[i]) {
-			if (Object.keys(json[i][k])[0] === month) {
-				return k;
+function getIndexByMonth(year = 2020, month = 'may', json = {}) {
+	for (const i in json.years) {
+		if (json.years[i].year === year) {
+			for (const k in json.years[i].months) {
+				if (Object.keys(json.years[i].months[k])[0] === month) {
+					return k;
+				}
 			}
 		}
 	}
 }
 
-function getIndexByDay(yearIndex, monthIndex, day, json) {
-	for (const i in json.years[yearIndex].months[monthIndex]) {
-		if (Object.keys(json.years[yearIndex].months[monthIndex][i])[0] === day)
-			return i;
-	}
+function getIndexByDay(yearIndex = 0, monthIndex = 0, day = 0, json = {}) {
+		const month = Object.keys(json.years[yearIndex].months[monthIndex])[0];
+		for (const i in json.years[yearIndex].months[monthIndex][month]) {
+			console.log( Object.keys(json.years[yearIndex].months[monthIndex][month][i])[0] );
+			console.log( Object.keys(json.years[yearIndex].months[monthIndex][month][i])[0] === day.toString() );
+			if (Object.keys(json.years[yearIndex].months[monthIndex][month][i])[0] === day.toString()) {
+				return i;
+			}
+		}
 }
 
-function addMissingData(json) {
+function addMissingData(json = {}) {
 	const currentYear = dataHandler.getDate().getFullYear();
 	const currentMonth = getMonthsName(dataHandler.getDate().getMonth());
 	const currentDay = dataHandler.getDate().getDate();
@@ -41,7 +44,8 @@ function addMissingData(json) {
 		yearIndex = dataHandler.addNewYear(currentYear, json);
 	}
 
-	let monthIndex = getIndexByMonth(currentMonth, json);
+	let monthIndex = getIndexByMonth(currentYear, currentMonth, json);
+	// console.log(monthIndex);
 	if (monthIndex === undefined) {
 		monthIndex = dataHandler.addNewMonth(getIndexByYear(currentYear, json), currentMonth, json);
 	}
@@ -50,45 +54,42 @@ function addMissingData(json) {
 	if (dayIndex === undefined) {
 		dataHandler.addNewDay(yearIndex, monthIndex, currentDay, json);
 	}
-
-	// console.log(JSON.stringify(json, null, '\t'));
+	console.log( dayIndex );
 }
 
-// module.exports = () => {
-// 	const scene = new Scene('add');
-// 	console.log(1);
-// 	scene.enter((ctx) => ctx.reply(local['commands.description']['add']));
-// 	scene.on('text', async (ctx) => {
-// 		let userData = await database.getAllUserDataById(ctx.message.from.id);
+module.exports = () => {
+	const scene = new Scene('add');
+	scene.enter((ctx) => ctx.reply(local['commands.description']['add']));
+	scene.on('text', async (ctx) => {
+		let userData = await database.getAllUserDataById(ctx.message.from.id);
 
-// 		console.log(userData.data);
+		const oldUserDayData = dataHandler.getDayValueFromJson(
+			dataHandler.getDate().getFullYear(),
+			getMonthsName(dataHandler.getDate().getMonth()),
+			dataHandler.getDate().getDate(),
+			userData.data.years,
+		) || '';
 
-// 		const oldUserDayData = dataHandler.getDayValueFromJson(
-// 			dataHandler.getDate().getFullYear(),
-// 			getMonthsName(dataHandler.getDate().getMonth()),
-// 			dataHandler.getDate().getDate(),
-// 			userData.data.years,
-// 		);
+		addMissingData(userData.data);
 
+		// console.log(ctx.message.text);
 
+		dataHandler.setDayValueToJson(
+			dataHandler.getDate().getFullYear(),
+			getMonthsName(dataHandler.getDate().getMonth()),
+			dataHandler.getDate().getDate(),
+			userData.data.years,
+			`${oldUserDayData}\n${ctx.message.text}\n`
+		);
 
-// 	console.log(oldUserDayData);
+		console.log( JSON.stringify(userData.data.years[1]) );
 
-// 		dataHandler.setDayValueToJson(
-// 			dataHandler.getDate().getFullYear(),
-// 			getMonthsName(dataHandler.getDate().getMonth()),
-// 			dataHandler.getDate().getDate(),
-// 			userData.data.years,
-// 			`${oldUserDayData || ''}\n${ctx.message.text}\n`
-// 		);
+		database.updateData(userData.data, userData.user_id);
 
-// 		database.updateData(userData.data, userData.user_id);
-
-// 		let message = local['user.interaction']['bon.appetite'];
-// 		message += ' ' + await ui.makePoliteComment();
-// 		await ctx.reply(message);
-// 		await ctx.scene.leave();
-// 	});
-// 	return scene;
-// };
-addMissingData(testJson);
+		let message = local['user.interaction']['bon.appetite'];
+		message += ' ' + await ui.makePoliteComment();
+		await ctx.reply(message);
+		await ctx.scene.leave();
+	});
+	return scene;
+};

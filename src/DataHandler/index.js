@@ -39,9 +39,7 @@ class DataHandler {
 			} else {
 				for (let k in json) {
 					if (json[k][month]) {
-						return json[k][month][json[k][month].length - 1][day];
-					} else {
-						return '';
+						return json[k][month][json[k][month].length - 1][day] || '';
 					}
 				}
 			}
@@ -56,11 +54,13 @@ class DataHandler {
 				this.setDayValueToJson(year, month, day, json[i][month], value);
 			} else {
 				for (let k in json) {
+					// console.log(year, month, day, json[k][month], k, month, json[k]);
 					if (json[k][month]) {
 						const lastElem = json[k][month].length - 1;
 						json[k][month][lastElem][day] = value;
+						// console.log( json[k][month][lastElem][day], 'value=', value );
 					}
-					return true;
+					// return true;
 				}
 			}
 		}
