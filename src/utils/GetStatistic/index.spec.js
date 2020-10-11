@@ -54,15 +54,3 @@ test('getCurrentWeek', async () => {
 		month[getMonthsName(dataHandler.getDate().getMonth())].slice(-7)
 	);
 });
-
-
-// test('getCurrentDay', async () => {
-// 	// const year = testJson.years[getIndexByYear(dataHandler.getDate().getFullYear(), testJson)];
-// 	const tmp = await getCurrentDay(userIdForTestingGetters);
-// 	console.log(tmp);
-// 	expect(1
-// 	).toEqual(
-// 1
-// 		// dataHandler.getDayValueFromJson()
-// 	);
-// });

@@ -71,23 +71,24 @@ class DataHandler {
 			'year': year,
 			'months': []
 		};
-
 		json.years.push(newYear);
+		return json.years.length - 1;
 	}
 
-	addNewMonth(month = getMonthsName(0), json) {
+	addNewMonth(yearIndex = 0, month = getMonthsName(0), json) {
 		const newMonth = {};
 		newMonth[month] = [];
-		json.years[json.years.length - 1].months.push(newMonth);
+		json.years[yearIndex].months.push(newMonth);
+		return json.years[yearIndex].months.length - 1;
 	}
 
-	addNewDay(day, json) {
-		const yearsLength = json.years.length - 1;
-		let lastMonth = json.years[yearsLength].months[json.years[yearsLength].months.length - 1];
+	addNewDay(yearIndex, monthIndex, day, json) {
 		const newDay = {};
-
 		newDay[day] = '';
-		lastMonth[Object.keys(lastMonth)].push(newDay);
+
+		const month = Object.keys(json.years[yearIndex].months[monthIndex])[0];
+		json.years[yearIndex].months[monthIndex][month].push(newDay);
+		return json.years[yearIndex].months[monthIndex][month].length - 1;
 	}
 
 	getFullDate() {
