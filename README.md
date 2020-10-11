@@ -23,7 +23,7 @@ $> sh setUpTelegramEnv.sh
 $> sh setUpDatabaseEnv.sh
 ```
 
-### > Stack of technology:  
+> Stack of technology:  
 ##### *Node.js*, *Postgresql*, *Jest*, *Telegram api*
 
 > What could I have done better at project?  
