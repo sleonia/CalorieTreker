@@ -16,7 +16,14 @@ module.exports = () => {
 		);
 	};
 
-	scene.enter(async (ctx) => ctx.reply(await getOldDayValue(ctx.message.from.id)));
+	scene.enter(async (ctx) => {
+		const oldValue = await getOldDayValue(ctx.message.from.id);
+		if (oldValue === '') {
+			ctx.reply(local['user.interaction']['edit.value.empty']);
+			await ctx.scene.leave();
+		}
+	});
+
 	scene.on('text', async (ctx) => {
 		let userData = await database.getAllUserDataById(ctx.message.from.id);
 
