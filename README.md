@@ -1,6 +1,6 @@
 # CalorieTreker
 > What is it?  
-[Telegram bot](tg://resolve?domain=CalorieTrekerBot) for counter calorie
+[Telegram bot](https://t.me/CalorieTrekerBot) for counter calorie
 
 > How to using?  
 Go to [telegram bot](tg://resolve?domain=CalorieTrekerBot) and press ```/start```.  
@@ -20,3 +20,6 @@ $> node src
 $> sh setUpTelegramEnv.sh
 $> sh setUpDatabaseEnv.sh
 ```
+
+> Stack of technology:  
+*Node.js*, *Postgresql*, *Jest*, *Telegram api*
