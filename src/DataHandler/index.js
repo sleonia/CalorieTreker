@@ -38,7 +38,11 @@ class DataHandler {
 				return this.getDayValueFromJson(year, month, day, json[i][month]);
 			} else {
 				for (let k in json) {
-					return json[k][month][json[k][month].length - 1][day];
+					if (json[k][month]) {
+						return json[k][month][json[k][month].length - 1][day];
+					} else {
+						return '';
+					}
 				}
 			}
 		}

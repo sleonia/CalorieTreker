@@ -21,7 +21,7 @@ module.exports = () => {
 			getMonthsName(dataHandler.getDate().getMonth()),
 			dataHandler.getDate().getDate(),
 			userData.data.years,
-			`${oldUserDayData}\n${ctx.message.text}\n`
+			`${oldUserDayData || ''}\n${ctx.message.text}\n`
 		);
 
 		database.updateData(userData.data, userData.user_id);

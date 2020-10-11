@@ -12,7 +12,7 @@ module.exports = () => {
 			dataHandler.getDate().getFullYear(),
 			getMonthsName(dataHandler.getDate().getMonth()),
 			dataHandler.getDate().getDate(),
-			userData.data.years,
+			userData.data.years || [],
 		);
 	};
 
@@ -24,11 +24,11 @@ module.exports = () => {
 			dataHandler.getDate().getFullYear(),
 			getMonthsName(dataHandler.getDate().getMonth()),
 			dataHandler.getDate().getDate(),
-			userData.data.years,
+			userData.data.years || [],
 			ctx.message.text
 		);
 
-		database.updateData(userData.data, userData.user_id);
+		await database.updateData(userData.data, userData.user_id);
 
 		await ctx.reply(local['user.interaction']['edit.success']);
 		await ctx.scene.leave();
