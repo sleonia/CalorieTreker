@@ -8,10 +8,10 @@ const {
 	getCurrentMonth,
 	getCurrentWeek,
 	getCurrentDay
-} = require('../../Utils/GetStatistic/');
+} = require('../../Utils/GetStatistic');
 
 async function sendStatisticFile(ctx, getData) {
-		saveFile(
+		await saveFile(
 			await getData(ctx.from.id)
 		);
 		ctx.telegram.sendDocument(ctx.from.id, {
@@ -23,10 +23,10 @@ async function sendStatisticFile(ctx, getData) {
 module.exports = async (bot) => {
 	bot.hears('/show', async (ctx) => {
 	const inlineMessageRatingKeyboard = Markup.inlineKeyboard([
-		Markup.callbackButton('year', 'getYearStatistic'),
-		Markup.callbackButton('month', 'getMonthStatistic'),
-		Markup.callbackButton('week', 'getWeekStatistic'),
-		Markup.callbackButton('day', 'getDayStatistic'),
+		Markup.callbackButton(local['show.buttons']['year'], 'getYearStatistic'),
+		Markup.callbackButton(local['show.buttons']['month'], 'getMonthStatistic'),
+		Markup.callbackButton(local['show.buttons']['week'], 'getWeekStatistic'),
+		Markup.callbackButton(local['show.buttons']['day'], 'getDayStatistic'),
 	]).extra();
 			ctx.reply(local['commands.description']['show'], inlineMessageRatingKeyboard);
 	});

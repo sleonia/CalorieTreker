@@ -26,8 +26,8 @@ function getIndexByMonth(year = 2020, month = 'may', json = {}) {
 function getIndexByDay(yearIndex = 0, monthIndex = 0, day = 0, json = {}) {
 		const month = Object.keys(json.years[yearIndex].months[monthIndex])[0];
 		for (const i in json.years[yearIndex].months[monthIndex][month]) {
-			console.log( Object.keys(json.years[yearIndex].months[monthIndex][month][i])[0] );
-			console.log( Object.keys(json.years[yearIndex].months[monthIndex][month][i])[0] === day.toString() );
+			// console.log( Object.keys(json.years[yearIndex].months[monthIndex][month][i])[0] );
+			// console.log( Object.keys(json.years[yearIndex].months[monthIndex][month][i])[0] === day.toString() );
 			if (Object.keys(json.years[yearIndex].months[monthIndex][month][i])[0] === day.toString()) {
 				return i;
 			}
@@ -45,7 +45,6 @@ function addMissingData(json = {}) {
 	}
 
 	let monthIndex = getIndexByMonth(currentYear, currentMonth, json);
-	// console.log(monthIndex);
 	if (monthIndex === undefined) {
 		monthIndex = dataHandler.addNewMonth(getIndexByYear(currentYear, json), currentMonth, json);
 	}
@@ -54,7 +53,6 @@ function addMissingData(json = {}) {
 	if (dayIndex === undefined) {
 		dataHandler.addNewDay(yearIndex, monthIndex, currentDay, json);
 	}
-	console.log( dayIndex );
 }
 
 module.exports = () => {
@@ -72,8 +70,6 @@ module.exports = () => {
 
 		addMissingData(userData.data);
 
-		// console.log(ctx.message.text);
-
 		dataHandler.setDayValueToJson(
 			dataHandler.getDate().getFullYear(),
 			getMonthsName(dataHandler.getDate().getMonth()),
@@ -82,7 +78,7 @@ module.exports = () => {
 			`${oldUserDayData}\n${ctx.message.text}\n`
 		);
 
-		console.log( JSON.stringify(userData.data.years[1]) );
+		// console.log( JSON.stringify(userData.data.years[1]) );
 
 		database.updateData(userData.data, userData.user_id);
 

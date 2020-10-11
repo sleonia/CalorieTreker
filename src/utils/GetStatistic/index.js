@@ -1,7 +1,3 @@
-const fs = require('fs');
-const { promisify } = require('util');
-const writeFileAsync = promisify(fs.writeFile);
-
 const { database, dataHandler } = require('../../constants');
 const getMonthsName = require('../GetMonthsName');
 
