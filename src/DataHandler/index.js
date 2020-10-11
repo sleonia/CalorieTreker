@@ -52,8 +52,11 @@ class DataHandler {
 				this.setDayValueToJson(year, month, day, json[i][month], value);
 			} else {
 				for (let k in json) {
-					json[k][month][json[k][month].length - 1][day] = value;
-					break;
+					if (json[k][month]) {
+						const lastElem = json[k][month].length - 1;
+						json[k][month][lastElem][day] = value;
+					}
+					return true;
 				}
 			}
 		}

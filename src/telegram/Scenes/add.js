@@ -9,12 +9,19 @@ module.exports = () => {
 	scene.on('text', async (ctx) => {
 		let userData = await database.getAllUserDataById(ctx.message.from.id);
 
+		const oldUserDayData = dataHandler.getDayValueFromJson(
+			dataHandler.getDate().getFullYear(),
+			getMonthsName(dataHandler.getDate().getMonth()),
+			dataHandler.getDate().getDate(),
+			userData.data.years,
+		);
+
 		dataHandler.setDayValueToJson(
 			dataHandler.getDate().getFullYear(),
 			getMonthsName(dataHandler.getDate().getMonth()),
 			dataHandler.getDate().getDate(),
 			userData.data.years,
-			ctx.message.text
+			`${oldUserDayData}\n${ctx.message.text}\n`
 		);
 
 		database.updateData(userData.data, userData.user_id);

@@ -1,7 +1,7 @@
 const Markup = require('telegraf/markup');
 const fs = require('fs');
 
-const { local, database, dataHandler } = require('../../constants');
+const { local } = require('../../constants');
 const saveFile = require('../../Utils/SaveFile');
 const {
 	getCurrentYear,
@@ -17,7 +17,7 @@ async function sendStatisticFile(ctx, getData) {
 		ctx.telegram.sendDocument(ctx.from.id, {
 			source: fs.createReadStream('statistic.json'),
 			filename: 'statistic.json'
-		}).catch(function(error){ console.log(error); });		
+		}).catch((error) => console.log(error));		
 }
 
 module.exports = async (bot) => {

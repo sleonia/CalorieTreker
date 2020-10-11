@@ -10,7 +10,6 @@ const {
 	getCurrentYear,
 	getCurrentMonth,
 	getCurrentWeek,
-	getCurrentDay
 } = require('.');
 
 function getIndexByYear(year, json) {
@@ -25,7 +24,6 @@ function getIndexByMonth(month, json) {
 	for (const i in json) {
 		for (const k in json[i]) {
 			if (Object.keys(json[i][k])[0] === month) {
-				// console.log(json[i][k]);
 				return json[i][k];
 			}
 		}
