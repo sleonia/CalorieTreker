@@ -8,7 +8,6 @@ module.exports = () => {
 	const getOldDayValue = async (id) => {
 		let userData = await database.getAllUserDataById(id);
 
-
 		return dataHandler.getDayValueFromJson(
 			dataHandler.getDate().getFullYear(),
 			getMonthsName(dataHandler.getDate().getMonth()),
@@ -19,7 +18,6 @@ module.exports = () => {
 
 	scene.enter(async (ctx) => {
 		const oldValue = await getOldDayValue(ctx.message.from.id);
-
 		if (oldValue === '') {
 			ctx.reply(local['user.interaction']['edit.value.empty']);
 			await ctx.scene.leave();
@@ -40,7 +38,6 @@ module.exports = () => {
 		);
 
 		await database.updateData(userData.data, userData.user_id);
-
 		await ctx.reply(local['user.interaction']['edit.success']);
 		await ctx.scene.leave();
 	});

@@ -21,6 +21,7 @@ module.exports = async (database, dataHandler, bot, local) => {
 			for (const i in dailyStatisticsArray) {
 				sum += Number(dailyStatisticsArray[i][1]) || 0;
 			}
+
 			ctx.reply(
 				local['user.interaction']['today.calories']['start']
 				+ ': ' + sum

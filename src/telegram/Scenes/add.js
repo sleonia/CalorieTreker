@@ -26,8 +26,6 @@ function getIndexByMonth(year = 2020, month = 'may', json = {}) {
 function getIndexByDay(yearIndex = 0, monthIndex = 0, day = 0, json = {}) {
 		const month = Object.keys(json.years[yearIndex].months[monthIndex])[0];
 		for (const i in json.years[yearIndex].months[monthIndex][month]) {
-			// console.log( Object.keys(json.years[yearIndex].months[monthIndex][month][i])[0] );
-			// console.log( Object.keys(json.years[yearIndex].months[monthIndex][month][i])[0] === day.toString() );
 			if (Object.keys(json.years[yearIndex].months[monthIndex][month][i])[0] === day.toString()) {
 				return i;
 			}
@@ -77,8 +75,6 @@ module.exports = () => {
 			userData.data.years,
 			`${oldUserDayData}\n${ctx.message.text}\n`
 		);
-
-		// console.log( JSON.stringify(userData.data.years[1]) );
 
 		database.updateData(userData.data, userData.user_id);
 
