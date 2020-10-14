@@ -2,13 +2,13 @@ const Markup = require('telegraf/markup');
 const fs = require('fs');
 
 const { local } = require('../../constants');
-const saveFile = require('../../Utils/SaveFile');
+const saveFile = require('../../utils/SaveFile');
 const {
 	getCurrentYear,
 	getCurrentMonth,
 	getCurrentWeek,
 	getCurrentDay
-} = require('../../Utils/GetStatistic');
+} = require('../../utils/GetStatistic');
 
 async function sendStatisticFile(ctx, getData) {
 		await saveFile(

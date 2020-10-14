@@ -1,6 +1,6 @@
 const Scene = require('telegraf/scenes/base');
 const { local, database, dataHandler } = require('../../constants');
-const getMonthsName = require('../../Utils/GetMonthsName');
+const getMonthsName = require('../../utils/GetMonthsName');
 
 module.exports = () => {
 	const scene = new Scene('edit');

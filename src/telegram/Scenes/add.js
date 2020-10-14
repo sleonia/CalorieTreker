@@ -1,7 +1,7 @@
 const Scene = require('telegraf/scenes/base');
 const { local, database, dataHandler } = require('../../constants');
-const ui = require('../../Utils/UserInteraction');
-const getMonthsName = require('../../Utils/GetMonthsName');
+const ui = require('../../utils/UserInteraction');
+const getMonthsName = require('../../utils/GetMonthsName');
 
 function getIndexByYear(year = 2020, json = {}) {
 	for (const i in json.years) {
@@ -68,6 +68,8 @@ module.exports = () => {
 
 		addMissingData(userData.data);
 
+		console.log(1, `${oldUserDayData}\n${ctx.message.text}\n`);
+
 		dataHandler.setDayValueToJson(
 			dataHandler.getDate().getFullYear(),
 			getMonthsName(dataHandler.getDate().getMonth()),
@@ -76,8 +78,11 @@ module.exports = () => {
 			`${oldUserDayData}\n${ctx.message.text}\n`
 		);
 
+		console.log(2, `${oldUserDayData}\n${ctx.message.text}\n`);
+
 		database.updateData(userData.data, userData.user_id);
 
+		console.log(3, `${oldUserDayData}\n${ctx.message.text}\n`);
 		let message = local['user.interaction']['bon.appetite'];
 		message += ' ' + await ui.makePoliteComment();
 		await ctx.reply(message);

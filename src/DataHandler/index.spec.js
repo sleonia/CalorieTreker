@@ -1,6 +1,6 @@
 const JsonDataHandler = require('.');
-const getMonthsName = require('../Utils/GetMonthsName');
-const defaultJsonData = require('../Utils/DefaultJsonData');
+const getMonthsName = require('../utils/GetMonthsName');
+const defaultJsonData = require('../utils/DefaultJsonData');
 
 let jsonDataHandler = new JsonDataHandler();
 

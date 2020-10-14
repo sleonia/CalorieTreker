@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const testJson = JSON.parse(fs.readFileSync('src/Utils/GetStatistic/spec.json'));
+const testJson = JSON.parse(fs.readFileSync('src/utils/GetStatistic/spec.json'));
 const { dataHandler } = require('../../constants');
 const getMonthsName = require('../GetMonthsName');
 

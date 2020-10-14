@@ -1,9 +1,10 @@
 const { Telegraf } = require('telegraf');
+const express = require('express')
 const { Stage, session } = Telegraf;
 const Scenes = require('./Scenes');
 
 const { local, bot, database, dataHandler } = require('../constants');
-const Commands = require('./Commands');
+const Commands = require('./commands');
 
 class Telegram {
 	constructor() {
@@ -26,7 +27,17 @@ class Telegram {
 
 	async launch() {
 		this.commandsHandler();
-		bot.launch();
+		const expressApp = express()
+
+		const port = process.env.PORT || 3000
+		expressApp.get('/', (req, res) => {
+		  res.send('Hello World!')
+		})
+		expressApp.listen(port, () => {
+		  console.log(`Listening on port ${port}`)
+		})
+
+		bot.startPolling()
 	}
 }
 

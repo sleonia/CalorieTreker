@@ -1,5 +1,5 @@
-const parser = require('../../Utils/ParseInput');
-const getMonthsName = require('../../Utils/GetMonthsName');
+const parser = require('../../utils/ParseInput');
+const getMonthsName = require('../../utils/GetMonthsName');
 
 module.exports = async (database, dataHandler, bot, local) => {
 	bot.hears('/today', async (ctx) => {
