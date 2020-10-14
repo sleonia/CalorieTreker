@@ -1,4 +1,4 @@
-const Telegram = require('./Telegram');
+const Telegram = require('./telegram');
 
 const index = (async () => {
 	try {

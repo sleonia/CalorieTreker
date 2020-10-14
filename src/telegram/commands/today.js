@@ -19,7 +19,7 @@ module.exports = async (database, dataHandler, bot, local) => {
 
 			let sum = 0;
 			for (const i in dailyStatisticsArray) {
-				sum += Number(dailyStatisticsArray[i][dailyStatisticsArray[i].length - 1) || 0;
+				sum += Number(dailyStatisticsArray[i][dailyStatisticsArray[i].length - 1]) || 0;
 			}
 
 			ctx.reply(
