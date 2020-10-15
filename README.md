@@ -5,7 +5,7 @@
 <img src = https://github.com/sleonia/CalorieTreker/blob/master/assets/index.jpg>
 
 > How to using?  
-##### Go to [telegram bot](tg://resolve?domain=CalorieTrekerBot) and press ```/start```.  
+##### Go to [telegram bot](tg://resolve?domain=CalorieTrekerBot) and press ```/start```.  [!Deactivated]
 ##### If you have any questions - press ```/help``` and read a message.
 
 > How to run?  
