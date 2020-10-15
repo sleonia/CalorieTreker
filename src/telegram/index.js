@@ -5,6 +5,8 @@ const Scenes = require('./Scenes');
 
 const { local, bot, database, dataHandler } = require('../constants');
 const Commands = require('./commands');
+const expressApp = express()
+const port = process.env.PORT || 3000
 
 class Telegram {
 	constructor() {
@@ -27,9 +29,7 @@ class Telegram {
 
 	async launch() {
 		this.commandsHandler();
-		const expressApp = express()
 
-		const port = process.env.PORT || 3000
 		expressApp.get('/', (req, res) => {
 		  res.send('Hello World!')
 		})
