@@ -1,18 +1,26 @@
 const { Telegraf } = require('telegraf');
-// const express = require('express')
+const express = require('express')
 const { Stage, session } = Telegraf;
 const Scenes = require('./Scenes');
 
 const { local, bot, database, dataHandler } = require('../constants');
 const Commands = require('./commands');
-// const expressApp = express()
-// const port = process.env.PORT || 3000
+const app = express()
 
 class Telegram {
 	constructor() {
 		const stage = new Stage([Scenes.add(), Scenes.edit()]);
 		bot.use(session());
 		bot.use(stage.middleware());
+
+		app.set('port', (process.env.PORT || 5000));
+
+		app.get('/', (request, response) => {
+		    const result = 'App is running';
+		    response.send(result);
+		}).listen(app.get('port'), () => {
+		    console.log('App is running, server is listening on port ', app.get('port'));
+		});
 	}
 
 	async commandsHandler() {
@@ -29,16 +37,7 @@ class Telegram {
 
 	async launch() {
 		await this.commandsHandler();
-
-		// expressApp.get('/', (req, res) => {
-		//   res.send('Hello World!')
-		// })
-		// expressApp.listen(port, () => {
-		//   console.log(`Listening on port ${port}`)
-		// })
-
 		bot.launch();
-		// bot.startPolling()
 	}
 }
 
