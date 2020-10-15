@@ -1,12 +1,12 @@
 const { Telegraf } = require('telegraf');
-const express = require('express')
+// const express = require('express')
 const { Stage, session } = Telegraf;
 const Scenes = require('./Scenes');
 
 const { local, bot, database, dataHandler } = require('../constants');
 const Commands = require('./commands');
-const expressApp = express()
-const port = process.env.PORT || 3000
+// const expressApp = express()
+// const port = process.env.PORT || 3000
 
 class Telegram {
 	constructor() {
@@ -16,28 +16,29 @@ class Telegram {
 	}
 
 	async commandsHandler() {
-		Commands.start(database, dataHandler, bot, local);
-		Commands.help(bot, local);
-		Commands.donat(bot, local);
-		Commands.contacts(bot, local);
-		Commands.show(bot, local);
-		Commands.edit(bot, local);
-		Commands.add(bot, local);
-		Commands.today(database, dataHandler, bot, local);
-		Commands.errorHandler(bot, local);
+		await Commands.start(database, dataHandler, bot, local);
+		await Commands.help(bot, local);
+		await Commands.donat(bot, local);
+		await Commands.contacts(bot, local);
+		await Commands.show(bot, local);
+		await Commands.edit(bot, local);
+		await Commands.add(bot, local);
+		await Commands.today(database, dataHandler, bot, local);
+		await Commands.errorHandler(bot, local);
 	}
 
 	async launch() {
-		this.commandsHandler();
+		await this.commandsHandler();
 
-		expressApp.get('/', (req, res) => {
-		  res.send('Hello World!')
-		})
-		expressApp.listen(port, () => {
-		  console.log(`Listening on port ${port}`)
-		})
+		// expressApp.get('/', (req, res) => {
+		//   res.send('Hello World!')
+		// })
+		// expressApp.listen(port, () => {
+		//   console.log(`Listening on port ${port}`)
+		// })
 
-		bot.startPolling()
+		bot.launch();
+		// bot.startPolling()
 	}
 }
 
