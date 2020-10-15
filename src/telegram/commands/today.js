@@ -20,7 +20,7 @@ module.exports = async (database, dataHandler, bot, local) => {
 			let sum = 0;
 			for (const i in dailyStatisticsArray) {
 				sum += Math.round(
-					Number(dailyStatisticsArray[i][dailyStatisticsArray[i].length - 1]) || 0;
+					Number(dailyStatisticsArray[i][dailyStatisticsArray[i].length - 1]) || 0
 				);
 				
 			}
