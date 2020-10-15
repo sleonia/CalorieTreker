@@ -24,7 +24,7 @@ $> sh setUpDatabaseEnv.sh
 ```
 
 > Stack of technology:  
-##### *Node.js*, *Postgresql*, *Jest*, *Telegram api*
+##### *Node.js*, *Postgresql*, *Jest*, *Telegram api*, *Heroku*
 
 > What could I have done better at project?  
 ##### Code style might be better, much better.  
