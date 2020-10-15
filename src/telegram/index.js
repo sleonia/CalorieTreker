@@ -6,7 +6,6 @@ const Scenes = require('./Scenes');
 const { local, bot, database, dataHandler } = require('../constants');
 const Commands = require('./commands');
 
-
 class Telegram {
 	constructor() {
 		const stage = new Stage([Scenes.add(), Scenes.edit()]);
