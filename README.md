@@ -1,4 +1,4 @@
-# CalorieTreker
+# CalorieTreker [Deactivated]
 > What is it?  
 ##### [Telegram bot](https://t.me/CalorieTrekerBot) for counter calorie
 
